@@ -105,7 +105,7 @@ $loo=mysqli_query($con,"SELECT * FROM log where id_user='$_SESSION[id_user]' ");
 <?php $pro=mysqli_query($con,"SELECT * FROM log where id_user='$_SESSION[id_user]' order by tanggal desc  LIMIT $MulaiAwal , $BatasAwal "); $vr=1;while($duk=mysqli_fetch_array($pro)){ ?>
                         <tr>
                           <td><?php echo $vr; ?></td>
-          <?php $ktpo=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM produk where id_produk='$duk[id_produk]' ")); ?>
+          <?php $ktpo=mysqli_fetch_array(mysqli_query($con,"SELECT c.id_checkout,c.an,p.nama,p.harga,p.gambar,l.jumlah FROM log l JOIN checkout c ON c.id_checkout = l.id_checkout JOIN produk p ON p.id_produk = l.id_produk WHERE p.id_produk = '$duk[id_produk]' ")); ?>
                           <td><img style="width:100px;height:80px;" src="control/<?php echo $ktpo['gambar']; ?>"></td>
                           <td><?php echo $ktpo['nama']; ?></td>
                           <td><?php echo $duk['jumlah']; ?></td>
